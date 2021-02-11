@@ -31,8 +31,8 @@ body {
 main {
   transform-style: preserve-3d;
   font-size: 3em;
-  transform: rotateY(10deg) rotateX(-30deg);
-  animation: rotation 15s linear infinite;
+  transform: rotateY(-40deg) rotateX(-40deg);
+  /* animation: rotation 15s linear infinite; */
 }
 
 @keyframes rotation {
@@ -51,11 +51,10 @@ div {
 
 /* GENERAL BLOCK STYLING */
 span {
-  border: 2px solid black;
+  background: #000;
   position: absolute;
   width: var(--blocksize);
   height: var(--blocksize);
-  border-radius: 16px;
   transition: transform 500ms ease-in-out;
   transform: rotate3d(var(--rotateX, 0), var(--rotateY, 1), 0, var(--deg, 0deg)) translateZ(calc(var(--blocksize)/var(--z))) translate(calc(calc(var(--blocksize)*var(--x))*var(--modX, 1)), calc(calc(var(--blocksize)*var(--y))*var(--modY, 1))) rotate(var(--rotation, 0));
 }
@@ -143,34 +142,84 @@ div:nth-of-type(6) span {
   --rotateY: 0;
 }
 
+div span:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--blocksize)/1.1);
+  height: calc(var(--blocksize)/1.1);
+  border-radius: 16px;
+}
+
 /* FACE/BLOCK COLORS */
-div:nth-of-type(1) span {
+div:nth-of-type(1) span:before {
   background-color: var(--green);
 }
 
-div:nth-of-type(2) span {
+div:nth-of-type(2) span:before {
   background-color: var(--red);
 }
 
-div:nth-of-type(3) span {
+div:nth-of-type(3) span:before {
   background-color: var(--blue);
 }
 
-div:nth-of-type(4) span {
+div:nth-of-type(4) span:before {
   background-color: var(--orange);
 }
 
-div:nth-of-type(5) span {
+div:nth-of-type(5) span:before {
   background-color: var(--white);
 }
 
-div:nth-of-type(6) span {
+div:nth-of-type(6) span:before {
   background-color: var(--yellow);
 }
 
 /* MEDIA QUERY FOR ANIMATION */
-@media (max-width: 600px) {
-  div:nth-of-type(1) span:nth-of-type(-n + 3) {
+@media (min-width: 600px) and (max-width: 900px) {
+  div:nth-of-type(1) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
+    --modX: -1;
+    --modY: 1;
+    --deg: 90deg;
+    --z: .4;
+  }
+  
+  div:nth-of-type(2) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
+    --modX: -1;
+    --modY: 1;
+    --deg: 180deg;
+    --z: 2;
+  }
+  
+  div:nth-of-type(3) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
+    --modX: 1;
+    --modY: 1;
+    --deg: 270deg;
+    --z: 2;
+  }
+  
+  div:nth-of-type(4) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
+    --modX: 1;
+    --modY: 1;
+    --z: .4;
+    --deg: 0deg;
+  }
+}
+
+/* @media (min-width: 900px) {
+  div:nth-of-type(1) span:nth-of-type(4) {
+    --z: 2;
+    --deg: 90deg;
+    --rotateX: 1;
+    --rotateY: 0;
+  }
+} */
+
+
+  /* div:nth-of-type(1) span:nth-of-type(-n + 3) {
     --modX: -1;
     --modY: 1;
     --deg: 90deg;
@@ -245,5 +294,4 @@ div:nth-of-type(6) span {
   div:nth-of-type(5) span:nth-of-type(9 ) {
     --x: 2;
     --y: 0;
-  }
-}
+  } */
