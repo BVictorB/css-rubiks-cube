@@ -31,6 +31,7 @@ body {
 main {
   transform-style: preserve-3d;
   font-size: 3em;
+  transform: rotateY(10deg) rotateX(-30deg);
   animation: rotation 15s linear infinite;
 }
 
@@ -56,7 +57,7 @@ span {
   height: var(--blocksize);
   border-radius: 16px;
   transition: transform 500ms ease-in-out;
-  transform: rotate3d(var(--rotateX, 0), var(--rotateY, 1), 0, var(--deg, 0deg)) translateZ(calc(var(--blocksize)/var(--z))) translate(calc(calc(var(--blocksize)*var(--x))*var(--modX, 1)), calc(calc(var(--blocksize)*var(--y))*var(--modY, 1)));
+  transform: rotate3d(var(--rotateX, 0), var(--rotateY, 1), 0, var(--deg, 0deg)) translateZ(calc(var(--blocksize)/var(--z))) translate(calc(calc(var(--blocksize)*var(--x))*var(--modX, 1)), calc(calc(var(--blocksize)*var(--y))*var(--modY, 1))) rotate(var(--rotation, 0));
 }
 
 /* SEPARATE BLOCK PLACEMENT */
@@ -124,7 +125,7 @@ div:nth-of-type(3) span {
 
 div:nth-of-type(4) span {
   --z: 2;
-  --deg: 270deg;
+  --deg: -90deg;
 }
 
 div:nth-of-type(5) span {
@@ -195,5 +196,54 @@ div:nth-of-type(6) span {
     --modY: 1;
     --z: .4;
     --deg: 0deg;
+  }
+
+  div:nth-of-type(5) span {
+    --rotation: -90deg;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(1) {
+    --x: 0;
+    --y: 2;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(2) {
+    --x: 0;
+    --y: 1;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(3) {
+    --x: 0;
+    --y: 0;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(4) {
+    --x: 1;
+    --y: 2;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(5) {
+    --x: 1;
+    --y: 1;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(6) {
+    --x: 1;
+    --y: 0;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(7) {
+    --x: 2;
+    --y: 2;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(8) {
+    --x: 2;
+    --y: 1;
+  }
+
+  div:nth-of-type(5) span:nth-of-type(9 ) {
+    --x: 2;
+    --y: 0;
   }
 }
