@@ -4,7 +4,6 @@
   margin: 0;
 }
 
-/* ROOT VARIABLE DECLARATIONS */
 :root {
   --green: #009B48;
   --red: #B90000;
@@ -16,7 +15,6 @@
   --blocksize: calc(var(--size)/3)
 }
 
-/* BODY STYLING */
 body {
   width: 100vw;
   height: 100vh;
@@ -27,11 +25,10 @@ body {
   overflow: hidden;
 }
 
-/* CUBE STYLING */
 main {
   transform-style: preserve-3d;
   font-size: 3em;
-  transform: rotateY(-40deg) rotateX(-40deg);
+  transform: rotateY(40deg) rotateX(40deg);
   /* animation: rotation 15s linear infinite; */
 }
 
@@ -41,257 +38,99 @@ main {
   }
 }
 
-/* GENERAL FACE STYLING */
-div {
-  position: absolute;
-  margin: calc(var(--size)/2 * -1);
-  width: var(--size);
-  height: var(--size);
-}
-
-/* GENERAL BLOCK STYLING */
 span {
-  background: #000;
+  border: 5px solid black;
   position: absolute;
   width: var(--blocksize);
   height: var(--blocksize);
+  transform: rotate3d(var(--rotateX, 0), var(--rotateY, 1), 0, var(--deg, 0deg)) translateZ(calc(var(--blocksize)/2));
+}
+
+div > div {
+  transform-style: preserve-3d;
   transition: transform 500ms ease-in-out;
-  transform: rotate3d(var(--rotateX, 0), var(--rotateY, 1), 0, var(--deg, 0deg)) translateZ(calc(var(--blocksize)/var(--z))) translate(calc(calc(var(--blocksize)*var(--x))*var(--modX, 1)), calc(calc(var(--blocksize)*var(--y))*var(--modY, 1))) rotate(var(--rotation, 0));
+  transform: translate3d(calc(var(--blocksize)*var(--x, 0)), calc(var(--blocksize)*var(--y, 0)), calc(var(--blocksize)*var(--z, 0)))
 }
 
-/* SEPARATE BLOCK PLACEMENT */
-div span:nth-of-type(1) {
-  --x: 0;
-  --y: 0;
-}
-
-div span:nth-of-type(2) {
-  --x: 1;
-  --y: 0;
-}
-
-div span:nth-of-type(3) {
-  --x: 2;
-  --y: 0;
-}
-
-div span:nth-of-type(4) {
-  --x: 0;
-  --y: 1;
-}
-
-div span:nth-of-type(5) {
-  --x: 1;
-  --y: 1;
-}
-
-div span:nth-of-type(6) {
-  --x: 2;
-  --y: 1;
-}
-
-div span:nth-of-type(7) {
-  --x: 0;
-  --y: 2;
-}
-
-div span:nth-of-type(8) {
-  --x: 1;
-  --y: 2;
-}
-
-div span:nth-of-type(9) {
-  --x: 2;
-  --y: 2;
-}
-
-/* BLOCK ROTATION PER FACE */
-div:nth-of-type(1) span {
-  --z: .4;
-}
-
-div:nth-of-type(2) span {
-  --z: .4;
-  --modX: -1;
-  --deg: 90deg;
-}
-
-div:nth-of-type(3) span {
-  --z: 2;
-  --modX: -1;
-  --deg: 180deg;
-}
-
-div:nth-of-type(4) span {
-  --z: 2;
-  --deg: -90deg;
-}
-
-div:nth-of-type(5) span {
-  --z: 2;
-  --deg: 90deg;
-  --rotateX: 1;
-  --rotateY: 0;
-}
-
-div:nth-of-type(6) span {
-  --z: .4;
-  --modY: -1;
-  --deg: -90deg;
-  --rotateX: 1;
-  --rotateY: 0;
-}
-
-div span:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(var(--blocksize)/1.1);
-  height: calc(var(--blocksize)/1.1);
-  border-radius: 16px;
-}
-
-/* FACE/BLOCK COLORS */
-div:nth-of-type(1) span:before {
+div > div span:nth-of-type(1) {
   background-color: var(--green);
+  --z: 1;
 }
 
-div:nth-of-type(2) span:before {
+div > div span:nth-of-type(2) {
   background-color: var(--red);
+  --deg: 90deg;
+  --z: -.4;
 }
 
-div:nth-of-type(3) span:before {
+div > div span:nth-of-type(3) {
   background-color: var(--blue);
+  --deg: 180deg;
+  --z: 2;
 }
 
-div:nth-of-type(4) span:before {
+div > div span:nth-of-type(4) {
   background-color: var(--orange);
+  --deg: 270deg;
+  --z: 2;
 }
 
-div:nth-of-type(5) span:before {
+div > div span:nth-of-type(5) {
   background-color: var(--white);
+  --deg: 90deg;
+  --rotateX: 1;
+  --rotateY: 0;
+  --z: 2;
 }
 
-div:nth-of-type(6) span:before {
+div > div span:nth-of-type(6) {
   background-color: var(--yellow);
+  --deg: -90deg;
+  --rotateX: 1;
+  --rotateY: 0;
+  --z: .4;
 }
 
-/* MEDIA QUERY FOR ANIMATION */
-@media (min-width: 600px) and (max-width: 900px) {
-  div:nth-of-type(1) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
-    --modX: -1;
-    --modY: 1;
-    --deg: 90deg;
-    --z: .4;
-  }
-  
-  div:nth-of-type(2) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
-    --modX: -1;
-    --modY: 1;
-    --deg: 180deg;
-    --z: 2;
-  }
-  
-  div:nth-of-type(3) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
-    --modX: 1;
-    --modY: 1;
-    --deg: 270deg;
-    --z: 2;
-  }
-  
-  div:nth-of-type(4) span:nth-of-type(n + 4):nth-of-type(-n + 6) {
-    --modX: 1;
-    --modY: 1;
-    --z: .4;
-    --deg: 0deg;
-  }
+div > div:nth-of-type(1) {
+  --x: -1;
+  --y: -1;
 }
 
-/* @media (min-width: 900px) {
-  div:nth-of-type(1) span:nth-of-type(4) {
-    --z: 2;
-    --deg: 90deg;
-    --rotateX: 1;
-    --rotateY: 0;
-  }
-} */
+div > div:nth-of-type(2) {
+  --y: -1;
+}
 
+div > div:nth-of-type(3) {
+  --x: 1;
+  --y: -1;
+}
 
-  /* div:nth-of-type(1) span:nth-of-type(-n + 3) {
-    --modX: -1;
-    --modY: 1;
-    --deg: 90deg;
-    --z: .4;
-  }
-  
-  div:nth-of-type(2) span:nth-of-type(-n + 3) {
-    --modX: -1;
-    --modY: 1;
-    --deg: 180deg;
-    --z: 2;
-  }
-  
-  div:nth-of-type(3) span:nth-of-type(-n + 3) {
-    --modX: 1;
-    --modY: 1;
-    --deg: 270deg;
-    --z: 2;
-  }
-  
-  div:nth-of-type(4) span:nth-of-type(-n + 3) {
-    --modX: 1;
-    --modY: 1;
-    --z: .4;
-    --deg: 0deg;
-  }
+div > div:nth-of-type(4) {
+  --x: -1;
+}
 
-  div:nth-of-type(5) span {
-    --rotation: -90deg;
-  }
+div > div:nth-of-type(6) {
+  --x: 1;
+}
 
-  div:nth-of-type(5) span:nth-of-type(1) {
-    --x: 0;
-    --y: 2;
-  }
+div > div:nth-of-type(7) {
+  --x: -1;
+  --y: 1;
+}
 
-  div:nth-of-type(5) span:nth-of-type(2) {
-    --x: 0;
-    --y: 1;
-  }
+div > div:nth-of-type(8) {
+  --y: 1;
+}
 
-  div:nth-of-type(5) span:nth-of-type(3) {
-    --x: 0;
-    --y: 0;
-  }
+div > div:nth-of-type(9) {
+  --x: 1;
+  --y: 1;
+}
 
-  div:nth-of-type(5) span:nth-of-type(4) {
-    --x: 1;
-    --y: 2;
-  }
+div:nth-of-type(1) div {
+  --z: -1;
+}
 
-  div:nth-of-type(5) span:nth-of-type(5) {
-    --x: 1;
-    --y: 1;
-  }
-
-  div:nth-of-type(5) span:nth-of-type(6) {
-    --x: 1;
-    --y: 0;
-  }
-
-  div:nth-of-type(5) span:nth-of-type(7) {
-    --x: 2;
-    --y: 2;
-  }
-
-  div:nth-of-type(5) span:nth-of-type(8) {
-    --x: 2;
-    --y: 1;
-  }
-
-  div:nth-of-type(5) span:nth-of-type(9 ) {
-    --x: 2;
-    --y: 0;
-  } */
+div:nth-of-type(3) div {
+  --z: 1;
+}
