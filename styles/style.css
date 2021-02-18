@@ -18,7 +18,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  perspective: 25em;
+  perspective: 40em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@ body {
 main {
   transform-style: preserve-3d;
   font-size: 3em;
-  transform: rotateY(40deg) rotateX(40deg);
+  transform: rotateY(-20deg) rotateX(-25deg);
   /* animation: rotation 15s linear infinite; */
 }
 
@@ -38,7 +38,9 @@ main {
   }
 }
 
-span {
+button {
+	font: inherit;
+	cursor: pointer;
   border: 5px solid black;
   position: absolute;
   width: var(--blocksize);
@@ -46,36 +48,44 @@ span {
   transform: rotate3d(var(--rotateX, 0), var(--rotateY, 1), 0, var(--deg, 0deg)) translateZ(calc(var(--blocksize)/2));
 }
 
-div > div {
-  transform-style: preserve-3d;
-  transition: transform 500ms ease-in-out;
-  transform: translate3d(calc(var(--blocksize)*var(--x, 0)), calc(var(--blocksize)*var(--y, 0)), calc(var(--blocksize)*var(--z, 0)))
+button:focus {
+  outline: none;
+  -webkit-box-shadow:inset 0px 0px 0px 3px #f00;
+  -moz-box-shadow:inset 0px 0px 0px 3px #f00;
+  box-shadow:inset 0px 0px 0px 3px #f00;
 }
 
-div > div span:nth-of-type(1) {
+div > div {
+  transform-style: preserve-3d;
+  transform-origin: calc(var(--blocksize)/2) calc(var(--blocksize)/2);
+  transition: transform 500ms ease-in-out;
+  transform: rotate3d(var(--rotateBlockX, 0), var(--rotateBlockY, 0), var(--rotateBlockZ, 0), var(--rotate, 0)) translate3d(calc(var(--blocksize)*var(--x, 0)), calc(var(--blocksize)*var(--y, 0)), calc(var(--blocksize)*var(--z, 0)));
+}
+
+div > div button:nth-of-type(1) {
   background-color: var(--green);
   --z: 1;
 }
 
-div > div span:nth-of-type(2) {
+div > div button:nth-of-type(2) {
   background-color: var(--red);
   --deg: 90deg;
   --z: -.4;
 }
 
-div > div span:nth-of-type(3) {
+div > div button:nth-of-type(3) {
   background-color: var(--blue);
   --deg: 180deg;
   --z: 2;
 }
 
-div > div span:nth-of-type(4) {
+div > div button:nth-of-type(4) {
   background-color: var(--orange);
   --deg: 270deg;
   --z: 2;
 }
 
-div > div span:nth-of-type(5) {
+div > div button:nth-of-type(5) {
   background-color: var(--white);
   --deg: 90deg;
   --rotateX: 1;
@@ -83,7 +93,7 @@ div > div span:nth-of-type(5) {
   --z: 2;
 }
 
-div > div span:nth-of-type(6) {
+div > div button:nth-of-type(6) {
   background-color: var(--yellow);
   --deg: -90deg;
   --rotateX: 1;
@@ -91,46 +101,136 @@ div > div span:nth-of-type(6) {
   --z: .4;
 }
 
-div > div:nth-of-type(1) {
-  --x: -1;
-  --y: -1;
-}
-
-div > div:nth-of-type(2) {
-  --y: -1;
-}
-
-div > div:nth-of-type(3) {
-  --x: 1;
-  --y: -1;
-}
-
-div > div:nth-of-type(4) {
+.block-1 {
   --x: -1;
 }
 
-div > div:nth-of-type(6) {
+.block-2 {
+  --x: 0;
+}
+
+.block-3 {
   --x: 1;
 }
 
-div > div:nth-of-type(7) {
-  --x: -1;
+.row-1 {
+  --y: -1;
+}
+
+.row-2 {
+  --y: 0;
+}
+
+.row-3 {
   --y: 1;
 }
 
-div > div:nth-of-type(8) {
-  --y: 1;
-}
-
-div > div:nth-of-type(9) {
-  --x: 1;
-  --y: 1;
-}
-
-div:nth-of-type(1) div {
+.column-1 {
   --z: -1;
 }
 
-div:nth-of-type(3) div {
+.column-2 {
+  --z: 0;
+}
+
+.column-3 {
   --z: 1;
 }
+
+
+
+/* 
+@media screen and (min-width: 500px) and (max-width: 600px) {
+  div:nth-of-type(1) div:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    --rotateBlockY: 1;
+    --rotate: 90deg;
+  }
+  div:nth-of-type(2) div:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    --rotateBlockY: 1;
+    --rotate: 90deg;
+  }
+  
+  div:nth-of-type(3) div:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    --rotateBlockY: 1;
+    --rotate: 90deg;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 700px) {
+  div:nth-of-type(1) div:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    --rotateBlockY: 1;
+    --rotate: -90deg;
+  }
+  div:nth-of-type(2) div:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    --rotateBlockY: 1;
+    --rotate: -90deg;
+  }
+  
+  div:nth-of-type(3) div:nth-of-type(n + 1):nth-of-type(-n + 3) {
+    --rotateBlockY: 1;
+    --rotate: -90deg;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  div:nth-of-type(3) > div:nth-of-type(1) {
+    --x: -1;
+    --y: 1;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(2) {
+    --x: -1;
+    --y: 0;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(3) {
+    --x: -1;
+    --y: -1;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(4) {
+    --x: 0;
+    --y: 1;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+
+  div:nth-of-type(3) > div:nth-of-type(5) {
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(6) {
+    --x: 0;
+    --y: -1;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(7) {
+    --x: 1;
+    --y: 1;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(8) {
+    --x: 1;
+    --y: 0;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+  
+  div:nth-of-type(3) > div:nth-of-type(9) {
+    --x: 1;
+    --y: -1;
+    --rotate: -90deg;
+    --rotateBlockZ: 1;  
+  }
+} */
