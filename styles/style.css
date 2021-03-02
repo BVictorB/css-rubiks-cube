@@ -44,6 +44,13 @@ h1 {
   animation: hover 1s ease-in-out infinite alternate;
 }
 
+h2 {
+  margin-top: 2rem;
+  font-size: 1em;
+  color: #1D976C;
+  text-shadow: 3px 3px 0px #93F9B9;
+}
+
 @keyframes hover {
   from {
     transform: translateY(-5px)
@@ -53,9 +60,102 @@ h1 {
   }
 }
 
+input[type="checkbox"] {
+	position: absolute;
+	width: 1px;
+}
+
+input[type="checkbox"]:checked + label {
+  box-shadow: 
+    1px 2px 0px var(--orange), 
+    2px 4px 0px var(--yellow), 
+    3px 6px 0px var(--green), 
+    4px 8px 0px var(--blue), 
+    5px 10px 0px var(--red);
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+}
+
+label {
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  border-radius: 20px;
+  margin: 20px auto;
+  width: 200px;
+  height: 44px;
+  font-size: 2rem;
+  font-family: 'Courgette', cursive;
+  background: var(--white);
+}
+
+#striped:checked ~ main button {
+  --greenGradient: repeating-linear-gradient(
+    45deg,
+    #00c85d,
+    #00c85d 15px,
+    #009B48 15px,
+    #009B48 30px
+  );
+  --redGradient: repeating-linear-gradient(
+    45deg,
+    #e80000,
+    #e80000 15px,
+    #B90000 15px,
+    #B90000 30px
+  );
+  --blueGradient: repeating-linear-gradient(
+    45deg,
+    #005fed,
+    #005fed 15px,
+    #0045ad 15px,
+    #0045ad 30px
+  );
+  --orangeGradient: repeating-linear-gradient(
+    45deg,
+    #fb7831,
+    #fb7831 15px,
+    #ff5900 15px,
+    #ff5900 30px
+  );
+  --whiteGradient: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 15px,
+    #dedede 15px,
+    #dedede 30px
+  );
+  --yellowGradient: repeating-linear-gradient(
+    45deg,
+    #ffe149,
+    #ffe149 15px,
+    #ffd500 15px,
+    #ffd500 30px
+  );
+}
+
+#transparent:checked ~ main button {
+  opacity: .7;
+}
+
+#animate:checked ~ main .cube {
+  animation: rotate 8s linear infinite alternate;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(var(--rotateCubeX)) rotateY(var(--rotateCubeY))
+  }
+  to {
+    transform: rotateX(1turn) rotateY(2turn)
+  }
+}
+
 main {
   width: 100%;
-  height: 60em;
+  height: 40em;
   perspective: 40em;
   display: flex;
   justify-content: center;
@@ -70,20 +170,9 @@ main {
   font-size: 3em;
   transform-style: preserve-3d;
   transition: transform 250ms ease-in-out;
-  animation: var(--cubeAnimation, none);
-}
-
-@keyframes rotate {
-  from {
-    transform: rotateX(var(--rotateCubeX)) rotateY(var(--rotateCubeY))
-  }
-  to {
-    transform: rotateX(1turn) rotateY(2turn)
-  }
 }
 
 main button {
-  opacity: var(--transparantFaces, 1);
 	font: inherit;
 	cursor: pointer;
   border: 5px solid black;
@@ -272,7 +361,7 @@ div > div button:nth-of-type(6) {
   }
 }
 
-/* @media (min-width: 1000px) {
+/* 2x2? @media (min-width: 1000px) {
   .cube div:nth-of-type(1) div,
   .cube div:nth-of-type(2) div:nth-of-type(3),
   .cube div:nth-of-type(2) div:nth-of-type(6),
@@ -338,36 +427,6 @@ footer button:nth-of-type(3)::after  {
 footer button:nth-of-type(4)::after  {
   top: 10px;
   transform: rotate(225deg);
-}
-
-footer input[type="checkbox"] {
-	position: absolute;
-	width: 1px;
-}
-
-footer input[type="checkbox"]:checked + label {
-  box-shadow: 
-    1px 2px 0px var(--orange), 
-    2px 4px 0px var(--yellow), 
-    3px 6px 0px var(--green), 
-    4px 8px 0px var(--blue), 
-    5px 10px 0px var(--red);
-}
-
-footer input[type="checkbox"]:focus {
-  outline: none;
-}
-
-footer label {
-  cursor: pointer;
-  display: block;
-  border-radius: 20px;
-  margin: 20px auto;
-  width: 200px;
-  height: 44px;
-  font-size: 2rem;
-  font-family: 'Courgette', cursive;
-  background: var(--white);
 }
 
 footer div {
