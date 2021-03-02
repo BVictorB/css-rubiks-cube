@@ -25,6 +25,7 @@ body {
   overflow-x: hidden;
 }
 
+/* HEADER */
 header {
   padding-top: 2em;
   text-align: center;
@@ -60,6 +61,7 @@ h2 {
   }
 }
 
+/* SETTINGS (checkboxes) */
 input[type="checkbox"] {
 	position: absolute;
 	width: 1px;
@@ -153,6 +155,7 @@ label {
   }
 }
 
+/* CUBE CONTAINER */
 main {
   width: 100%;
   height: 40em;
@@ -163,6 +166,7 @@ main {
   overflow: hidden;
 }
 
+/* CUBE */
 .cube {
   transform: rotateX(var(--rotateCubeX)) rotateY(var(--rotateCubeY));
   width: 1.65em;
@@ -172,6 +176,15 @@ main {
   transition: transform 250ms ease-in-out;
 }
 
+/* CUBE BLOCKS */
+div > div {
+  transform-style: preserve-3d;
+  transform-origin: calc(var(--blocksize)/2) calc(var(--blocksize)/2);
+  transition: transform 500ms ease-in-out;
+  transform: rotateY(var(--rotateBlockY, 0)) rotateX(var(--rotateBlockX, 0)) rotateZ(var(--rotateBlockZ, 0)) translate3d(calc(var(--blocksize)*var(--x, 0)), calc(var(--blocksize)*var(--y, 0)), calc(var(--blocksize)*var(--z, 0)));
+}
+
+/* CUBE FACES */
 main button {
 	font: inherit;
 	cursor: pointer;
@@ -187,13 +200,6 @@ main button:focus {
   box-shadow:inset 0px 0px 0px 3px #f00;
   -webkit-box-shadow:inset 0px 0px 0px 3px #f00;
   -moz-box-shadow:inset 0px 0px 0px 3px #f00;
-}
-
-div > div {
-  transform-style: preserve-3d;
-  transform-origin: calc(var(--blocksize)/2) calc(var(--blocksize)/2);
-  transition: transform 500ms ease-in-out;
-  transform: rotateY(var(--rotateBlockY, 0)) rotateX(var(--rotateBlockX, 0)) rotateZ(var(--rotateBlockZ, 0)) translate3d(calc(var(--blocksize)*var(--x, 0)), calc(var(--blocksize)*var(--y, 0)), calc(var(--blocksize)*var(--z, 0)));
 }
 
 div > div button:nth-of-type(1) {
@@ -292,6 +298,7 @@ div > div button:nth-of-type(6) {
   --y: 1;
 }
 
+/* ROTATIONS */
 @media (min-width: 600px) {
   .cube div:nth-of-type(1) div:nth-of-type(3),
   .cube div:nth-of-type(1) div:nth-of-type(6),
@@ -361,23 +368,7 @@ div > div button:nth-of-type(6) {
   }
 }
 
-/* 2x2? @media (min-width: 1000px) {
-  .cube div:nth-of-type(1) div,
-  .cube div:nth-of-type(2) div:nth-of-type(3),
-  .cube div:nth-of-type(2) div:nth-of-type(6),
-  .cube div:nth-of-type(2) div:nth-of-type(7),
-  .cube div:nth-of-type(2) div:nth-of-type(8),
-  .cube div:nth-of-type(2) div:nth-of-type(9),
-  .cube div:nth-of-type(3) div:nth-of-type(3),
-  .cube div:nth-of-type(3) div:nth-of-type(6),
-  .cube div:nth-of-type(3) div:nth-of-type(7),
-  .cube div:nth-of-type(3) div:nth-of-type(8),
-  .cube div:nth-of-type(3) div:nth-of-type(9) {
-    display: none;
-  }
-} */
-
-
+/* ROTATION BUTTONS */
 footer {
   text-align: center;
 }
@@ -429,6 +420,7 @@ footer button:nth-of-type(4)::after  {
   transform: rotate(225deg);
 }
 
+/* SPINNING RUBIK'S CUBE */
 footer div {
   position: fixed;
   bottom: 20px;
