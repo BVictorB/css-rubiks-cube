@@ -96,10 +96,8 @@ label {
 #striped:checked ~ main button {
   --greenGradient: repeating-linear-gradient(
     45deg,
-    #00c85d,
-    #00c85d 15px,
-    #009B48 15px,
-    #009B48 30px
+    #00c85d 0 15px,
+    #009B48 15px 30px
   );
   --redGradient: repeating-linear-gradient(
     45deg,
@@ -177,7 +175,7 @@ main {
 }
 
 /* CUBE BLOCKS */
-div > div {
+.cube div div {
   transform-style: preserve-3d;
   transform-origin: calc(var(--blocksize)/2) calc(var(--blocksize)/2);
   transition: transform 500ms ease-in-out;
@@ -371,6 +369,7 @@ div > div button:nth-of-type(6) {
 /* ROTATION BUTTONS */
 footer {
   text-align: center;
+  padding-bottom: 64px;
 }
 
 footer button {
